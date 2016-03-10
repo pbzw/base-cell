@@ -1,6 +1,4 @@
-`define idle   4'b0000
-`define finish 4'b0001
-`define busy   4'b0010
+
 
 module state_machine(
 input clk,
@@ -12,12 +10,14 @@ output done
 
 reg [3:0]state;
 reg[3:0]nstate;
+parameter idle=4'b0000;
+parameter finish=4'b0001;
+parameter busy  =4'b0010;
 
-
-always@(posedge clk,posedge rst)
+always@(posedge clk)
 begin
 	if(rst)
-	state=`idle;
+	state=idle;
 	else
 	state<=nstate;
 end
@@ -25,18 +25,18 @@ end
 always@(*)
 begin
 	case(state)
-	`idle:begin
+	idle:begin
 			if(start)
-			nstate=`busy;
+			nstate=busy;
 			else
-			nstate=`idle;
+			nstate=idle;
 			end
-	`busy:begin
+	busy:begin
 			if(all)
-			nstate=`finish;
+			nstate=finish;
 			else
-			nstate=`busy;
+			nstate=busy;
 			end
-	`finish:nstate=`finish;
+	finish:nstate=finish;
 	endcase
 end
