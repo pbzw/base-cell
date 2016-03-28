@@ -1,3 +1,5 @@
+`include "define.v"
+
 module regfile #(parameter WIDTH = 16,parameter DEPTH = 8)(
 input clk,
 input we,
@@ -8,11 +10,15 @@ output [WIDTH-1:0] read_out_1,
 output [WIDTH-1:0] read_out_2
 );
 integer i;
+
 parameter zero={(WIDTH){1'b0}};
+
 reg [WIDTH-1:0]file[DEPTH-1:0];
+
 assign read_out_1=file[read_reg1];
 assign read_out_2=file[read_reg2];
-always @(posedge clk)
+
+always @(`clk_trigger_edge clk)
 begin
 	/*if(rst)
 	for(i=0;i<DEPTH;i=i+1)

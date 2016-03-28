@@ -1,3 +1,5 @@
+`include "define.v"
+
 module buffer #(parameter WIDTH = 32,reset=16'h3000)(
 input clk,
 input rst,
@@ -8,9 +10,9 @@ output reg[WIDTH-1:0] data_out
 
 
 
-always@(posedge clk)
+always@(`clk_trigger_edge clk,`rst_trigger_edge rst)
 begin
-	if(rst)
+	if(`rst)
 	data_out<=reset;
 	else if(en)
 	data_out<=data_in;
