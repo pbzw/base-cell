@@ -1,6 +1,17 @@
+// Release date : 2016.06.19
+// File         : reg_file.v
+// Project      : None
+// For          : DICS summer Camp 2016
+// Creator(s)   : Yang, Yu-Xiang (M10412034@yuntech.edu.tw)
+// 
+//
+//
+//  Description: 
+//   parameter line reg_file code 
+
 `include "define.v"
 
-module regfile #(parameter WIDTH = 16,parameter DEPTH = 8)(
+module reg_file #(parameter WIDTH = 16,parameter DEPTH = 8)(
 input clk,
 input we,
 input [$clog2(DEPTH)-1:0]read_reg1,read_reg2,

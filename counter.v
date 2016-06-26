@@ -12,8 +12,6 @@ always@(posedge clk)
 begin
 	if(rst)
 	count<=zero;
-	else if(clr)
-	count<={{(WIDTH-1){1'b0}},1'b1};
 	else if(en)
 	count<=count+{{WIDTH-1{1'b0}},1'b1};
 end
